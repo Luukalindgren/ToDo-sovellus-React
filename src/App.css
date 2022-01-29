@@ -1,19 +1,4 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #787c83;
   min-height: 100vh;
   display: flex;
@@ -24,15 +9,44 @@
   color: rgb(44, 44, 44);
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  background-color: white;
+  padding: 10px 60px;
+  border-radius: 15px;
+  margin: 10px 0px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tehty {
+  text-decoration: line-through;
+}
+.eiTehty {
+  text-decoration: none;
+}
+
+#poista {
+  background-color: red;
+  color: white;
+  margin: 0px 20px;
+  padding: 10px 15px;
+}
+
+#lisää {
+  background-color: green;
+  color: white;
+  margin: 0px 15px;
+  padding: 3px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: larger;
+}
+
+#lajittele {
+  background-color: blue;
+  color: white;
+}
+
+#poistakaikki {
+  background-color: red;
+  color: white;
 }
