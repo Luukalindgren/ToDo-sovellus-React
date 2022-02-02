@@ -29,7 +29,11 @@ function App () {
   function poistaNote(index) {  //Poistaa valitun noten sen indeksin mukaan
     let temp = notes.filter((item, i) => i !== index);
     setNotes(temp);
+    let temp2 = tehdyt.filter((item) => item !== index); //Poistaa poistettavan listauksen indexin tehdyistä
+    setTehdyt(temp2);
     //KORJATTAVAA ON YLIVIIVAUKSEN SIIRTO, NYT KUN POISTAA JONKUN, NIIN YLIVIIVAUS PYSYY SAMASSA INDEKSISSÄ, VAIKKA PITÄISI PIENENTYÄ YHDELLÄ/POISTUA!
+    //Eli jotenkin: temp[i] === (tehdyt[i] - 1)  =>  setTehdyt(temp); Mutta vain indekseiltä jotka ovat isompia kuin poistettava!!!
+
   }
   
   function yliviivaaNote(index) {
