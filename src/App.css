@@ -9,6 +9,10 @@
   color: rgb(44, 44, 44);
 }
 
+ul {
+  list-style-type: decimal;
+}
+
 button {
   background-color: white;
   padding: 10px 60px;
@@ -20,14 +24,18 @@ button {
 .tehty {
   text-decoration: line-through;
 }
-.eiTehty {
-  text-decoration: none;
+
+#yliviivaa {
+  background-color: green;
+  color: white;
+  margin-left: 20px;
+  padding: 10px 15px;
 }
 
 #poista {
   background-color: red;
   color: white;
-  margin: 0px 20px;
+  margin: 0px 0px;
   padding: 10px 15px;
 }
 
@@ -35,7 +43,7 @@ button {
   background-color: green;
   color: white;
   margin: 0px 15px;
-  padding: 3px 12px;
+  padding: 0px 12px;
   border-radius: 15px;
   cursor: pointer;
   font-size: larger;
