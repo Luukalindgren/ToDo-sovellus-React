@@ -1,8 +1,8 @@
 //TODO:
 //1. VALMIS!
-//2. VALMIS!
-//3. VALMIS! KORJATTAVA YHTEENSOPIVAKSI YLIVIIVAUKSEN KANSSA!
-//4. VALMIS!
+//2. VALMIS! Taulukko ei renderöidy itsestään, inputti tarvii muuttua ennen uudelleen renderöintiä
+//3. VALMIS! 
+//4. VALMIS! -||-
 //5. VALMIS!
 
 
@@ -11,9 +11,9 @@ import React, {useState} from "react";
 
 
 function App () {
-  const [notes, setNotes] = useState(["Tässä todo -sovelluskessa on vikoja joille en keksinyt ratkaisua...","Lajittelu ja tehdyksi merkkaus ei uudelleen renderöi listaa...","Syötekenttään tarvitsee laittaa jokin merkki renderöityäkseen.", "Tehdyksi merkkauksen poisto ei toimi oikein..."]);
-  const [value, setValue] = useState("");
-  const [tehdyt, setTehdyt] = useState([]);
+  const [notes, setNotes] = useState(["Tässä todo -sovelluskessa on vikoja joille en keksinyt ratkaisua...","Lajittelu ja tehdyksi merkkaus ei uudelleen renderöi listaa...","Syötekenttään tarvitsee laittaa jokin merkki renderöityäkseen.", "React ei ollut entuudestaan tuttu, tämä oli ensikosketus."]);
+  const [value, setValue] = useState("");   //Inputin arvoille
+  const [tehdyt, setTehdyt] = useState([]); //Tehdyksi merkatut
 
   function addToNotes() {     //Lisää listan(notes) viimeiseksi halutun noten
     if(value === ""){
@@ -26,14 +26,16 @@ function App () {
     }
 }
 
-  function poistaNote(index) {  //Poistaa valitun noten sen indeksin mukaan
+  function poistaNote(index) {          //Poistaa valitun noten sen indeksin mukaan
     let temp = notes.filter((item, i) => i !== index);
     setNotes(temp);
     let temp2 = tehdyt.filter((item) => item !== index); //Poistaa poistettavan listauksen indexin tehdyistä
+    for(let i=0; i<= tehdyt.length; i++) {               //Siirtää yliviivauksen poiston yhtyedessä oikeaan paikkaan
+      if(temp2[i]>index){
+         temp2[i] = (temp2[i]-1);
+      }
+    }
     setTehdyt(temp2);
-    //KORJATTAVAA ON YLIVIIVAUKSEN SIIRTO, NYT KUN POISTAA JONKUN, NIIN YLIVIIVAUS PYSYY SAMASSA INDEKSISSÄ, VAIKKA PITÄISI PIENENTYÄ YHDELLÄ/POISTUA!
-    //Eli jotenkin: temp[i] === (tehdyt[i] - 1)  =>  setTehdyt(temp); Mutta vain indekseiltä jotka ovat isompia kuin poistettava!!!
-
   }
   
   function yliviivaaNote(index) {
