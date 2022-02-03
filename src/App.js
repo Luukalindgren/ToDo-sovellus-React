@@ -1,19 +1,22 @@
 //TODO:
 //1. VALMIS!
-//2. VALMIS! Taulukko ei renderöidy itsestään, inputti tarvii muuttua ennen uudelleen renderöintiä
+//2. VALMIS! 
 //3. VALMIS! 
-//4. VALMIS! -||-
+//4. VALMIS!
 //5. VALMIS!
 
-
 import './App.css';
-import React, {useState} from "react";
-
+import React, {useState, useReducer} from "react";
 
 function App () {
   const [notes, setNotes] = useState(["Tässä todo -sovelluskessa on vikoja joille en keksinyt ratkaisua...","Lajittelu ja tehdyksi merkkaus ei uudelleen renderöi listaa...","Syötekenttään tarvitsee laittaa jokin merkki renderöityäkseen.", "React ei ollut entuudestaan tuttu, tämä oli ensikosketus."]);
   const [value, setValue] = useState("");   //Inputin arvoille
   const [tehdyt, setTehdyt] = useState([]); //Tehdyksi merkatut
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  function reRender() {       //Last resort renderöinti ongelmaan...
+    forceUpdate();
+  }
 
   function addToNotes() {     //Lisää listan(notes) viimeiseksi halutun noten
     if(value === ""){
@@ -48,19 +51,19 @@ function App () {
       let temp = tehdyt;
       temp.push(index);
       setTehdyt(temp);
+      reRender();
     }
   }
 
-  function lajittele() {     
+  function lajittele() {    
     setNotes(notes.sort());
-    // JOSTAIN SYYSTÄ INPUTTIIN PITÄÄ LAITTAA JOKIN SYMBOLI ENNENKUIN LISTA PÄIVITTYY
-  }
+    reRender();
+   }
 
   function poistaKaikki() {
     setNotes([]);
     setTehdyt([]); //Yliviiaukset poistuu ettei ne tule uusiin merkintöihin mukaan
   }
-
 
   return (
     <div className="App">
