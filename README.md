@@ -1,3 +1,3 @@
-ToDo -sovellus ennakkotehtävä kesätyöhakuun 2022.
+First React project.
 
-KESKEN!
+ToDo -app for summer trainee job 2022.

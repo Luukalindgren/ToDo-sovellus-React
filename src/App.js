@@ -12,7 +12,7 @@ function App () {
   const [notes, setNotes] = useState(["Tässä todo -sovelluskessa on vikoja joille en keksinyt ratkaisua...","Lajittelu ja tehdyksi merkkaus ei uudelleen renderöi listaa...","Syötekenttään tarvitsee laittaa jokin merkki renderöityäkseen.", "React ei ollut entuudestaan tuttu, tämä oli ensikosketus."]);
   const [value, setValue] = useState("");   //Inputin arvoille
   const [tehdyt, setTehdyt] = useState([]); //Tehdyksi merkatut
-  const [, forceUpdate] = useReducer(x => x + 1, 0);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);  //forceUpdate()
 
   function reRender() {       //Last resort renderöinti ongelmaan...
     forceUpdate();
@@ -29,25 +29,23 @@ function App () {
     }
 }
 
-  function poistaNote(index) {          //Poistaa valitun noten sen indeksin mukaan
+  function poistaNote(index) {       //Poistaa valitun noten sen indeksin mukaan
     let temp = notes.filter((item, i) => i !== index);
     setNotes(temp);
-    let temp2 = tehdyt.filter((item) => item !== index); //Poistaa poistettavan listauksen indexin tehdyistä
-    for(let i=0; i<= tehdyt.length; i++) {               //Siirtää yliviivauksen poiston yhtyedessä oikeaan paikkaan
-      if(temp2[i]>index){
-         temp2[i] = (temp2[i]-1);
+    temp = tehdyt.filter((item) => item !== index); //Poistaa poistettavan listauksen indexin tehdyistä
+    for(let i=0; i<= tehdyt.length; i++) {          //Siirtää yliviivauksen poiston yhtyedessä oikeaan paikkaan
+      if(temp[i]>index){
+         temp[i] = (temp[i]-1);
       }
     }
-    setTehdyt(temp2);
+    setTehdyt(temp);
   }
   
   function yliviivaaNote(index) {
-    //Jos tehdyt -listassa on jo tämä tehdyn indexi, se poistetaan, jolloin kyseisen yliviivauspoistuu
-    if (tehdyt.includes(index)) {
+    if (tehdyt.includes(index)) {   //Jos tehdyt -listassa on jo tämä tehdyn indexi, se poistetaan, jolloin kyseisen yliviivauspoistuu
       let temp = tehdyt.filter((item) => item !== index);
       setTehdyt(temp);
-    } //Jos ei ole, niin tehdyt -listaan lisätään indexi, jolloin sen tyyliin tulee yliviivaus lisää.
-    else {
+    } else {        //Jos ei ole, niin tehdyt -listaan lisätään indexi, jolloin sen tyyliin tulee yliviivaus lisää.
       let temp = tehdyt;
       temp.push(index);
       setTehdyt(temp);
@@ -55,8 +53,8 @@ function App () {
     }
   }
 
-  function lajittele() {    
-    setNotes(notes.sort());
+  function lajittele() {  //A-Ö lajittelu    
+    notes.sort();
     reRender();
    }
 
